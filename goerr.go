@@ -113,7 +113,7 @@ func (e *errTracking) Stdout() {
 	fmt.Println("Error:", e.message)
 	fmt.Println("Error Route:")
 	for _, r := range e.route {
-		fmt.Println(r.File, r.FuncName, r.Lineno)
+		fmt.Println(r.File, r.Lineno, r.FuncName)
 	}
 
 	for k, v := range e.values {
