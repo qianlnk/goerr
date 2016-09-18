@@ -7,13 +7,15 @@ import (
 )
 
 func productErr() Goerr {
-	return Err(errors.New("Error: goerr."), "myargs1", "myargs2")
+	return Err(errors.New("Error: goerr."))
 }
 
 func productNil() Goerr {
-	err := Err(errors.New("err"))
-	err.AddValue("age", 26)
-	err.AddValue("name", "qianlnk")
+	err := Err(errors.New("this a test error message."))
+	if err != nil {
+		err.AddValue("age", 26)
+		err.AddValue("name", "qianlnk")
+	}
 	return err
 }
 
