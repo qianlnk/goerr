@@ -7,10 +7,8 @@ import (
 )
 
 type errTracking struct {
-	isErr   bool
 	route   []RouteNode
 	message string
-	args    []interface{}
 	values  map[string]interface{}
 }
 
@@ -23,10 +21,11 @@ type RouteNode struct {
 type Goerr interface {
 	AddValue(key string, value interface{})
 
-	IsErr() bool
 	Message() string
 	Route() []RouteNode
 	Value(key string) interface{}
+
+	Stdout() //show fmt message for debug
 }
 
 func newErrRouteNode(file, funcname string, lineno int) RouteNode {
@@ -51,17 +50,14 @@ func (e *errTracking) cleanErrRouteNode() {
 }
 
 func (e *errTracking) setErrMsg(err error) {
-	if err != nil {
-		e.isErr = true
-		e.message = err.Error()
+	e.message = err.Error()
+}
+
+func Err(err error) Goerr {
+	if err == nil {
+		return nil
 	}
-}
 
-func (e *errTracking) setArgs(args ...interface{}) {
-	e.args = append(e.args, args...)
-}
-
-func Err(err error, args ...interface{}) Goerr {
 	var caller int = 1
 	goerr := new(errTracking)
 
@@ -84,7 +80,6 @@ func Err(err error, args ...interface{}) Goerr {
 	}
 
 	goerr.setErrMsg(err)
-	goerr.setArgs(args...)
 
 	return goerr
 }
@@ -102,10 +97,6 @@ func (e *errTracking) AddValue(key string, value interface{}) {
 	e.values[key] = value
 }
 
-func (e *errTracking) IsErr() bool {
-	return e.isErr
-}
-
 func (e *errTracking) Message() string {
 	return e.message
 }
@@ -116,4 +107,16 @@ func (e *errTracking) Route() []RouteNode {
 
 func (e *errTracking) Value(key string) interface{} {
 	return e.values[key]
+}
+
+func (e *errTracking) Stdout() {
+	fmt.Println("Error:", e.message)
+	fmt.Println("Error Route:")
+	for _, r := range e.route {
+		fmt.Println(r.File, r.FuncName, r.Lineno)
+	}
+
+	for k, v := range e.values {
+		fmt.Println(k, v)
+	}
 }
