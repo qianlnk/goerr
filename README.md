@@ -75,11 +75,11 @@ func main() {
 		warn: key age exist!
 		Error: Error: goerr.
 		Error Route:
-		/Users/xiezhenjia/go/src/github.com/qianlnk/goerr/demo/demo.go 10 productErr
-		/Users/xiezhenjia/go/src/github.com/qianlnk/goerr/demo/demo.go 29 caller1
-		/Users/xiezhenjia/go/src/github.com/qianlnk/goerr/demo/demo.go 33 caller2
-		/Users/xiezhenjia/go/src/github.com/qianlnk/goerr/demo/demo.go 37 caller3
-		/Users/xiezhenjia/go/src/github.com/qianlnk/goerr/demo/demo.go 41 main
+		/Users/xxxxxx/go/src/github.com/qianlnk/goerr/demo/demo.go 10 productErr
+		/Users/xxxxxx/go/src/github.com/qianlnk/goerr/demo/demo.go 29 caller1
+		/Users/xxxxxx/go/src/github.com/qianlnk/goerr/demo/demo.go 33 caller2
+		/Users/xxxxxx/go/src/github.com/qianlnk/goerr/demo/demo.go 37 caller3
+		/Users/xxxxxx/go/src/github.com/qianlnk/goerr/demo/demo.go 41 main
 		age 26
 
 # Result explain
