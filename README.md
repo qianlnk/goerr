@@ -1,6 +1,8 @@
 # goerr
 
-		goerr is a library which provides a track of error. often we return the err in a func, and when error occur we always don't know where it occured. 
+		goerr is a library which provides a track of error. 
+		often we return the err in a func, and when error occur we always 
+		don't know where it occured. 
 		goerr will tell you the error occur at which file, line, func.
 
 # Install
@@ -9,9 +11,13 @@
 # Interface
 
 `AddValue(key string, value interface{})` add some k-v Info to help debug
+
 `Message() string` get error message
+
 `Route() []RouteNode` get where the error occur
+
 `Value(key string) interface{}` get the k-v you have add
+
 `Stdout()` show fmt message for debug
 
 # Use
@@ -77,4 +83,5 @@ func main() {
 		age 26
 
 # Result explain
-		from this result message, we know the err occur at file demo.go's line 10, and function name is productErr, it called by caller1、 caller2、 caller3、 main
+		from this result message, we know the err occur at file demo.go's line 10, 
+		and function name is productErr, it called by caller1、 caller2、 caller3、 main
